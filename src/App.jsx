@@ -48,7 +48,7 @@ const App = () => {
       alert('Please fill all fields first.');
       return;
     }
-    if (passCount + failCount < sampleSize) {
+    if (passCount + failCount < sampleSize && failCount < sampleAccept) {
       setPassCount(passCount + 1);
     }
   };
@@ -106,7 +106,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>Quality Control</h1>
+      <h1>Audit</h1>
       <div className="form-group">
         <label>Buyer:</label>
         <select onChange={handleBuyerChange}>
@@ -142,10 +142,10 @@ const App = () => {
         <input type="number" value={sampleAccept} readOnly />
       </div>
       <div className="button-group">
-        <button onClick={handlePassClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled ? 'active' : 'inactive'}>
+        <button onClick={handlePassClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled && passFailButtonsActive&& !finalFailButtonActive && !finalPassButtonActive? 'active' : 'inactive'}>
           Pass ({passCount})
         </button>
-        <button onClick={handleFailClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled ? 'active' : 'inactive'}>
+        <button onClick={handleFailClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled && passFailButtonsActive&& !finalFailButtonActive && !finalPassButtonActive? 'active' : 'inactive'}>
           Fail ({failCount})
         </button>
       </div>
