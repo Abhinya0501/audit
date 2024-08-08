@@ -48,7 +48,7 @@ const App = () => {
       alert('Please fill all fields first.');
       return;
     }
-    if (passCount + failCount < sampleAccept) {
+    if (passCount + failCount < sampleSize) {
       setPassCount(passCount + 1);
     }
   };
@@ -58,7 +58,7 @@ const App = () => {
       alert('Please fill all fields first.');
       return;
     }
-    if (passCount + failCount < sampleAccept) {
+    if (passCount + failCount < sampleSize && failCount < sampleAccept) {
       setFailCount(failCount + 1);
     }
   };
@@ -100,11 +100,13 @@ const App = () => {
   };
 
   const allFieldsFilled = pcsReceived && sampleSize && sampleAccept;
-  const finalButtonsActive = passCount + failCount >= sampleAccept;
+  const finalPassButtonActive = passCount + failCount === sampleSize && failCount < sampleAccept;
+  const finalFailButtonActive = passCount + failCount === sampleSize || failCount >= sampleAccept && sampleAccept > 0 ;
+  const passFailButtonsActive = passCount + failCount < sampleSize;
 
   return (
     <div className="app-container">
-      <h1>Audit Application</h1>
+      <h1>Quality Control</h1>
       <div className="form-group">
         <label>Buyer:</label>
         <select onChange={handleBuyerChange}>
@@ -140,25 +142,25 @@ const App = () => {
         <input type="number" value={sampleAccept} readOnly />
       </div>
       <div className="button-group">
-        <button onClick={handlePassClick} disabled={!allFieldsFilled} className={ 'active' }>
+        <button onClick={handlePassClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled ? 'active' : 'inactive'}>
           Pass ({passCount})
         </button>
-        <button onClick={handleFailClick} disabled={!allFieldsFilled} className={'active' }>
+        <button onClick={handleFailClick} disabled={!allFieldsFilled || !passFailButtonsActive} className={allFieldsFilled ? 'active' : 'inactive'}>
           Fail ({failCount})
         </button>
       </div>
       <div className="button-group">
         <button 
           onClick={handleFinalPassClick} 
-          disabled={!finalButtonsActive || (failCount > passCount && passCount === 0)}
-          className={finalButtonsActive ? 'active' : 'inactive'}
+          disabled={!finalPassButtonActive}
+          className={finalPassButtonActive ? 'active' : 'inactive'}
         >
           Final Pass
         </button>
         <button 
           onClick={handleFinalFailClick} 
-          disabled={!finalButtonsActive || (passCount > failCount && failCount === 0)}
-          className={finalButtonsActive ? 'active' : 'inactive'}
+          disabled={!finalFailButtonActive}
+          className={finalFailButtonActive ? 'active' : 'inactive'}
         >
           Final Fail
         </button>

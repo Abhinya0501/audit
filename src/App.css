@@ -5,44 +5,43 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 15px;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
-  }
-  
-  .form-group select,
-  .form-group input {
+}
+
+.form-group select,
+.form-group input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-  }
-  
-  .button-group {
+}
+
+.button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-  }
-  
-  .button-group button {
+}
+
+.button-group button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .button-group button.inactive {
+}
+
+.button-group button.inactive {
     background-color: #ccc;
     cursor: not-allowed;
-  }
-  
-  .button-group button.active {
+}
+
+.button-group button.active {
     background-color: #007bff;
     color: white;
-  }
-  
+}
