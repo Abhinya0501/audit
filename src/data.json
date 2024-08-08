@@ -1,0 +1,21 @@
+{
+    "buyers": [
+      {
+        "id": 1,
+        "name": "Buyer A",
+        "styles": [
+          { "id": 1, "name": "Style A1", "issuedQuantity": 100 },
+          { "id": 2, "name": "Style A2", "issuedQuantity": 200 }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Buyer B",
+        "styles": [
+          { "id": 3, "name": "Style B1", "issuedQuantity": 150 },
+          { "id": 4, "name": "Style B2", "issuedQuantity": 250 }
+        ]
+      }
+    ]
+  }
+  
